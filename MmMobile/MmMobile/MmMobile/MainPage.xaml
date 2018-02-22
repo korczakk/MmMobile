@@ -3,9 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MmMobile"
              x:Class="MmMobile.MainPage">
+    <AbsoluteLayout>
+        <Grid RowSpacing="5" ColumnSpacing="5" >
+            <Grid.RowDefinitions >
+                <RowDefinition ></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="80"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label HorizontalOptions="Center"  Grid.Column="0" >NazwaNazwaNazwaNazwaNazwaNazwaNazwaNazwaNazwa produktu</Label>
+            <Label Grid.Row="1"  HorizontalOptions="Center">122334444224242424</Label>
+            <Label  Grid.Column="1" HorizontalOptions="Center">Sztuk</Label>
+            <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Center">2</Label>
+            <Label  Grid.Column="2" HorizontalOptions="Center">Cena jedn.</Label>
+            <Label Grid.Row="1" Grid.Column="2" HorizontalOptions="Center">12,50.</Label>
+        </Grid>
+        <ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                   
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+        <Button BackgroundColor="White" Image="view.png" AbsoluteLayout.LayoutBounds="0.9, 0.8, 50, 50" AbsoluteLayout.LayoutFlags="PositionProportional" >
+        </Button>
+    </AbsoluteLayout>
 
 </ContentPage>
