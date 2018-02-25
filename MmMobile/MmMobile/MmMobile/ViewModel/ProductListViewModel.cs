@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
-using FireBaseClient;
+using FirebaseClient;
 using MmMaker.Model;
 
 namespace MmMobile.ViewModel
 {
-    public class ProductListViewModel
+    public class MainPageViewModel : INotifyPropertyChanged
     {
         string _appKey = "AIzaSyBaQegiosq-yCEp1CdNsZ6dGiAhQgN8fgw";
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<ExcelContent> mmContent { get; private set; }
 
@@ -21,9 +24,10 @@ namespace MmMobile.ViewModel
         {
             FirebaseDatabase firebase = new FirebaseDatabase(idToken);
 
-            IEnumerable<ExcelContent> Content = firebase.GetData<ExcelContent>("");
+            IEnumerable<ExcelContent> Content = 
+                firebase.GetData<ExcelContent>("https://shoppinglist-dba72.firebaseio.com/MM/MMContent.json");
 
-            mmContent = new ObservableCollection<ExcelContent>(mmContent); 
+            mmContent = new ObservableCollection<ExcelContent>(Content);
         }
 
         /// <summary>
@@ -34,9 +38,14 @@ namespace MmMobile.ViewModel
         {
             FirebaseAuthentication auth = new FirebaseAuthentication(_appKey);
 
-            SignInResponse signinResult = auth.SignInWithEmail("kamil.korczak@gmail.com", "HPdj690");
+            SignInResponse signinResult = auth.SignInWithEmail("kamil.korczak@gmail.com", "HPdj690P");
 
             return signinResult.idToken;
+        }
+
+        protected  void OnPropertyChanged(string name)
+        {
+
         }
     }
 }

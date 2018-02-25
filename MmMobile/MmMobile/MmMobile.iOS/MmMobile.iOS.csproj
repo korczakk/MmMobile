@@ -114,7 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FireBaseClient">
-      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2017\Projects\FireBaseClient\FireBaseClient\bin\Debug\FireBaseClient.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2017\Projects\FireBaseClient\FireBaseClient\bin\Release\FireBaseClient.dll</HintPath>
     </Reference>
     <Reference Include="MmMakerModel">
       <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2017\Projects\MmMaker\MmMakerModel\bin\Release\MmMakerModel.dll</HintPath>

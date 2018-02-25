@@ -11,10 +11,12 @@ namespace MmMobile
 {
     public partial class MainPage : ContentPage
     {
-        ProductListViewModel vm = new ProductListViewModel();
+        MainPageViewModel vm = new MainPageViewModel();
 
         public MainPage()
         {
+            this.BindingContext = new MainPageViewModel();
+
             InitializeComponent();
         }
 
@@ -22,9 +24,11 @@ namespace MmMobile
         {
             //zalogowanie do Firebase
             string idToken = vm.FirebaseSignIn();
-            
+                        
             //Pobranie danych z Firebase  
             vm.GetData(idToken);
+
+            lista.ItemsSource = vm.mmContent;
 
             base.OnAppearing();
         }

@@ -40,8 +40,9 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FireBaseClient">
-      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2017\Projects\FireBaseClient\FireBaseClient\bin\Debug\FireBaseClient.dll</HintPath>
+    <Reference Include="FireBaseClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2017\Projects\FireBaseClient\FireBaseClient\bin\Release\FireBaseClient.dll</HintPath>
     </Reference>
     <Reference Include="MmMakerModel">
       <HintPath>..\..\..\..\..\..\Documents\Visual Studio 2017\Projects\MmMaker\MmMakerModel\bin\Release\MmMakerModel.dll</HintPath>
