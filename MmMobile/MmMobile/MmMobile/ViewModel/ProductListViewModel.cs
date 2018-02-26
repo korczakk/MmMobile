@@ -11,10 +11,24 @@ namespace MmMobile.ViewModel
     public class MainPageViewModel : INotifyPropertyChanged
     {
         string _appKey = "AIzaSyBaQegiosq-yCEp1CdNsZ6dGiAhQgN8fgw";
+        private ObservableCollection<ExcelContent> _mmContent;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<ExcelContent> mmContent { get; private set; }
+        public ObservableCollection<ExcelContent> MmContent
+        {
+            get
+            {
+                return _mmContent;
+            }
+            private set
+            {
+                _mmContent = value;
+
+                OnPropertyChanged("MmContent");
+            }
+        } 
+
 
         /// <summary>
         /// Pobiera dane o MM z Firebase
@@ -24,10 +38,10 @@ namespace MmMobile.ViewModel
         {
             FirebaseDatabase firebase = new FirebaseDatabase(idToken);
 
-            IEnumerable<ExcelContent> Content = 
+            IEnumerable<ExcelContent> Content =
                 firebase.GetData<ExcelContent>("https://shoppinglist-dba72.firebaseio.com/MM/MMContent.json");
 
-            mmContent = new ObservableCollection<ExcelContent>(Content);
+            MmContent = new ObservableCollection<ExcelContent>(Content);
         }
 
         /// <summary>
@@ -43,9 +57,14 @@ namespace MmMobile.ViewModel
             return signinResult.idToken;
         }
 
-        protected  void OnPropertyChanged(string name)
+        protected void OnPropertyChanged(string name)
         {
+            PropertyChangedEventHandler handler = PropertyChanged;
 
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

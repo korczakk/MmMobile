@@ -3,15 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MmMobile"
              x:Class="MmMobile.MainPage"
-             Padding="5">
+             Padding="5"
+             NavigationPage.HasNavigationBar="False"
+             Title="Lista">
     <AbsoluteLayout>
 
 
-        <ListView x:Name="lista" HasUnevenRows="True"  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="SizeProportional">
+        <ListView ItemsSource="{Binding MmContent}" HasUnevenRows="True"  AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="SizeProportional">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-
                         <Grid Padding="10">
                             <Grid.RowDefinitions >
                                 <RowDefinition></RowDefinition>
@@ -35,7 +36,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button  Image="view.png" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0.9, 0.8, 50, 50" AbsoluteLayout.LayoutFlags="PositionProportional" >
+        <Button  Image="view.png" Clicked="ScanButton_clicked" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0.9, 0.8, 50, 50" AbsoluteLayout.LayoutFlags="PositionProportional" >
         </Button>
     </AbsoluteLayout>
 

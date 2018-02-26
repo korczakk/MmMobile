@@ -11,28 +11,25 @@ namespace MmMobile
 {
     public partial class MainPage : ContentPage
     {
-        MainPageViewModel vm = new MainPageViewModel();
 
         public MainPage()
         {
-            this.BindingContext = new MainPageViewModel();
+            MainPageViewModel vm = new MainPageViewModel();
+
+            this.BindingContext = vm;
+            
+            //zalogowanie do Firebase
+            string idToken = vm.FirebaseSignIn();
+
+            //Pobranie danych z Firebase  
+            vm.GetData(idToken);
 
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        public async  void ScanButton_clicked(object sender, EventArgs e)
         {
-            //zalogowanie do Firebase
-            string idToken = vm.FirebaseSignIn();
-                        
-            //Pobranie danych z Firebase  
-            vm.GetData(idToken);
-
-            lista.ItemsSource = vm.mmContent;
-
-            base.OnAppearing();
+            await Navigation.PushAsync(new ScanerPage());
         }
-
-
     }
 }
