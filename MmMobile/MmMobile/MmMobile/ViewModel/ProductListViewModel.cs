@@ -5,12 +5,13 @@ using System.ComponentModel;
 using System.Text;
 using FirebaseClient;
 using MmMaker.Model;
+using MmMobile.Services;
+using Xamarin.Forms;
 
 namespace MmMobile.ViewModel
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
-        string _appKey = "AIzaSyBaQegiosq-yCEp1CdNsZ6dGiAhQgN8fgw";
         private ObservableCollection<ExcelContent> _mmContent;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -34,8 +35,10 @@ namespace MmMobile.ViewModel
         /// Pobiera dane o MM z Firebase
         /// </summary>
         /// <param name="idToken"></param>
-        public void GetData(string idToken)
+        public void GetData()
         {
+            string idToken = new FirebaseToken().GetToken().idToken;
+
             FirebaseDatabase firebase = new FirebaseDatabase(idToken);
 
             IEnumerable<ExcelContent> Content =
@@ -44,18 +47,6 @@ namespace MmMobile.ViewModel
             MmContent = new ObservableCollection<ExcelContent>(Content);
         }
 
-        /// <summary>
-        /// Loguje się do Firebase i zwraca idToken
-        /// </summary>
-        /// <returns>Token</returns>
-        public string FirebaseSignIn()
-        {
-            FirebaseAuthentication auth = new FirebaseAuthentication(_appKey);
-
-            SignInResponse signinResult = auth.SignInWithEmail("kamil.korczak@gmail.com", "HPdj690P");
-
-            return signinResult.idToken;
-        }
 
         protected void OnPropertyChanged(string name)
         {

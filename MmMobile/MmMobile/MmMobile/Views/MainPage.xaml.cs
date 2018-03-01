@@ -16,13 +16,10 @@ namespace MmMobile
         {
             MainPageViewModel vm = new MainPageViewModel();
 
-            this.BindingContext = vm;
-            
-            //zalogowanie do Firebase
-            string idToken = vm.FirebaseSignIn();
+            this.BindingContext = vm;            
 
             //Pobranie danych z Firebase  
-            vm.GetData(idToken);
+            vm.GetData();
 
             InitializeComponent();
         }
