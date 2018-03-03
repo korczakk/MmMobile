@@ -49,11 +49,14 @@ namespace MmMobile.Services
         /// Dodaje do obiektu Application obiekt SignInResponse w postaci JSON
         /// </summary>
         /// <param name="token"></param>
-        private void CacheToken(SignInResponse token)
+        private async void CacheToken(SignInResponse token)
         {
             string json = JsonConvert.SerializeObject(token);
 
             Application.Current.Properties["token"] = json;
+
+            //zapisuje natychmiast - normalnie zapisuje po wyjścu z app
+            await Application.Current.SavePropertiesAsync();
         }
 
         /// <summary>
