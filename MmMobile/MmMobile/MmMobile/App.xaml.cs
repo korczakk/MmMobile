@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using ZXing.Mobile;
 
 namespace MmMobile
 {
@@ -16,6 +17,8 @@ namespace MmMobile
             InitializeComponent();
 
             MainPage = new NavigationPage(new MmMobile.MainPage());
+
+            MobileBarcodeScanner.Initialize(new Android.App.Application());
         }
 
         protected override void OnStart()

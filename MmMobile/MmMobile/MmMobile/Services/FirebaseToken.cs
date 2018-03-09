@@ -1,4 +1,5 @@
-﻿using FirebaseClient;
+﻿
+using FirebaseClient;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,8 @@ namespace MmMobile.Services
                 //loguję do firebase
                 token = FirebaseSignIn();
 
+                token.SetExpirationDate();
+
                 CacheToken(token);
 
                 return token;
@@ -40,6 +43,10 @@ namespace MmMobile.Services
             if (IsTokenValid(token) == false)
             {
                 token = RefreshToken(token.refreshToken);
+
+                token.SetExpirationDate();
+
+                CacheToken(token);
             }
 
             return token;
@@ -67,7 +74,15 @@ namespace MmMobile.Services
         private SignInResponse RefreshToken(string refreshToken)
         {
             FirebaseAuthentication auth = new FirebaseAuthentication(_appKey);
-            return auth.RefreshToken(refreshToken);
+            RefreshResponse refreshedToken = auth.RefreshToken(refreshToken);
+
+            //Przy refreshu jest zwracany typ RefreshResponse więc muszę przepisać na SignInResponse
+            return new SignInResponse()
+            {
+                idToken = refreshedToken.id_token,
+                refreshToken = refreshedToken.refresh_token,
+                expiresIn = refreshedToken.expires_in
+            };
         }
 
         /// <summary>
@@ -77,7 +92,12 @@ namespace MmMobile.Services
         /// <returns>True jeśli token jest ważny</returns>
         private bool IsTokenValid(SignInResponse token)
         {
-            TimeSpan diff = token.ExpirationDate.Subtract(DateTime.Now);
+            if (token.ExpirationDate == null)
+            {
+                return false;
+            }
+
+            TimeSpan diff = token.ExpirationDate.Value.Subtract(DateTime.Now);
 
             return diff.Minutes > 5;
         }

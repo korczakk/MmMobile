@@ -4,9 +4,7 @@
              x:Class="MmMobile.ScanerPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Scan" x:Name="buttonScan"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
