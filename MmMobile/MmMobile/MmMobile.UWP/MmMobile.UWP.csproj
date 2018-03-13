@@ -152,8 +152,8 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="2.5.1.317207-pre1" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.0.7" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.340284-pre2" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.0.8" />
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>2.3.2</Version>
     </PackageReference>

@@ -11,9 +11,11 @@ namespace MmMobile
 {
     public partial class MainPage : ContentPage
     {
+
         public MainPage()
         {
             MainPageViewModel vm = new MainPageViewModel(new PageService());
+
 
             this.BindingContext = vm;
 

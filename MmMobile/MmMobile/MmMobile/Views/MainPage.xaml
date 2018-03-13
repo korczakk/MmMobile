@@ -13,15 +13,15 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10">
+                        <Grid  Padding="5">
                             <Grid.RowDefinitions >
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions >
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="50"></ColumnDefinition>
-                                <ColumnDefinition Width="80"></ColumnDefinition>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="210"></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Label HorizontalOptions="Center"  Grid.Column="0" Text="{Binding ProductName}"></Label>
                             <Label Grid.Row="1"  HorizontalOptions="Center" Text="{Binding BarCode}"></Label>
@@ -36,7 +36,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button  Image="view.png" Clicked="ScanButton_clicked" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0.9, 0.8, 50, 50" AbsoluteLayout.LayoutFlags="PositionProportional" >
+        <Button  Image="view.png" Command="{Binding ScanButtonClick}" BackgroundColor="White" AbsoluteLayout.LayoutBounds="0.9, 0.8, 50, 50" AbsoluteLayout.LayoutFlags="PositionProportional" >
         </Button>
     </AbsoluteLayout>
 
